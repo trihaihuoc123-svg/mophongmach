@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Motor Detail</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<h2>⚙️ Motor Detail</h2>
+
+<div class="container">
+
+<!-- MÔ PHỎNG -->
+<div class="sim">
+<iframe src="https://falstad.com/circuit/circuitjs.html"
+width="100%" height="400"></iframe>
+</div>
+
+<!-- TÍNH TOÁN -->
+<div class="calc">
+<h3>Tính toán</h3>
+
+<label>U (V)</label>
+<input id="u" value="380"><br>
+
+<label>P (W)</label>
+<input id="p" value="3000"><br>
+
+<label>cosφ</label>
+<input id="cos" value="0.85"><br>
+
+<label>Hiệu suất</label>
+<input id="eff" value="0.9"><br><br>
+
+<button onclick="calc()">Tính</button>
+
+<h4 id="out"></h4>
+
+<canvas id="chart"></canvas>
+
+</div>
+
+</div>
+
+<script src="chart.js"></script>
+
+<script>
+function calc() {
+  let U = +document.getElementById("u").value;
+  let P = +document.getElementById("p").value;
+  let cos = +document.getElementById("cos").value;
+  let eff = +document.getElementById("eff").value;
+
+  let I = P / (1.732 * U * cos * eff);
+
+  document.getElementById("out").innerText =
+    "Dòng ≈ " + I.toFixed(2) + " A";
+}
+</script>
+
+</body>
+</html>
